@@ -5,7 +5,8 @@ A Nodejs environment that use typescript code to manage the project as an object
 This project use bookshelf for the database connection and Entities mapping to be used as ORM. 
 
 The use of typescript on this section helped for the use of decorations to works like annotations to indicates 
-the method types of the api webservices and separates the api by them. ex: "host/ <<post | get>>/ [pathname]"
+the method types of the api webservices and separates the api by them. 
+ex: *"host/ <<post | get>>/ [pathname]"*
 
 
 ###### How to use this project
