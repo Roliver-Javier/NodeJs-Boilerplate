@@ -1,0 +1,17 @@
+{
+    "compilerOptions":{ //acciones del compilador
+        "outDir": "./build", //ruta del proyecto donde alojara la estructura del proyecto
+        "sourceMap": true, //como son archivos comprimidos para saber el error donde se encuentra
+        "target": "es5", //ecma script 5
+        "module":"commonjs", // como va a cargar los modulos 
+        //"watch": true
+        "experimentalDecorators": true
+    },
+    "include":[
+        "./**/*"  //Se le indica que archivos va a incluir en la transformacion
+    ],
+    "exclude": [ // se excluye o ignora los archivos en la transformacion
+        "node_modules/**/*",
+        "./build/**/*"        
+    ]
+}
