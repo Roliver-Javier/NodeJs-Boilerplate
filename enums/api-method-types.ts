@@ -3,9 +3,11 @@
  * @constant
  * @author Roliver Javier Rodriguez
  */
-export const Enums = {
-    MethodTypes:{
+export const ApiMethodTypes = {
+    MethodTypes: {
         POST: 'POST',
-        GET: 'GET' 
+        GET: 'GET',
+        DELETE: 'DELETE',
+        PUT: 'PUT'
     }
 };

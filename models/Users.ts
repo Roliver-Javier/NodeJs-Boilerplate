@@ -1,5 +1,4 @@
-import * as Express from 'express';
-import {DBController} from '../../controllers/DBController';
+import { Database } from '../database';
 
 /**
  * Database Entity
@@ -8,8 +7,8 @@ import {DBController} from '../../controllers/DBController';
  * @author Roliver Javier Rodriguez
  */
 
-let database  = DBController.getInstance();
-let bookshelf =  database.getConnection();
+let database = Database.getInstance();
+let bookshelf = database.getConnection();
 
 var Users = bookshelf.Model.extend({
     tableName: 'users'

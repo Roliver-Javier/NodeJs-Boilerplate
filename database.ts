@@ -1,23 +1,23 @@
-import config from '../config/main.js';
-import * as Knex from 'knex';
 import * as Bookshelf from 'bookshelf';
+import * as Knex from 'knex';
+import config from './config/main.js';
 
 /**
  * Represents the connection of the database using bookshelf.
  * Using the Singleton Design Pattern to make just one instance for the connection.
- * @name DBController
+ * @name Database
  * @class
  * @author Roliver Javier Rodriguez
  */
-export class DBController{
-    
-    private static dbContrl:DBController;
-    private bookshelf: Bookshelf;  
+export class Database {
 
-    private constructor(){
+    private static database: Database;
+    private bookshelf: Bookshelf;
+
+    private constructor() {
         var knex = Knex({
             client: config.database.dialect,
-            connection:{
+            connection: {
                 host: config.database.host,
                 user: config.database.user,
                 password: config.database.password,
@@ -29,12 +29,12 @@ export class DBController{
     }
 
 
-    public static getInstance():DBController{
-        return this.dbContrl || (this.dbContrl = new this());
+    public static getInstance(): Database {
+        return this.database || (this.database = new this());
     }
 
-    public getConnection = function(){
-            return this.bookshelf;
+    public getConnection = function () {
+        return this.bookshelf;
     }
 
 };
