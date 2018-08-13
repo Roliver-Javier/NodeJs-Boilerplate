@@ -1,6 +1,6 @@
-import * as express from 'express';
-import Users from '../models/entities/Users'
-import { POST,GET} from '../utilities/Decorators';
+import Users from '../models/Users';
+import { ApiVersion } from '../enums/api-version.enum';
+import { GET } from '../utilities/Decorators';
 
 /**
  * Represent the controller of a User's management
@@ -8,19 +8,19 @@ import { POST,GET} from '../utilities/Decorators';
  * @class
  * @author Roliver Javier Rodriguez
  */
-export class UserController{
+export class UserController {
 
-    constructor(){ }
+    constructor() { }
 
-    @GET({path:"/findAllUsers",version:[1]})    
-    public getAllUser(req,resp):void{   
-        Users.fetchAll().then(function(res){
+    @GET({ path: "/findAllUsers", version: ApiVersion.V1 })
+    public getAllUser(req, resp): void {
+        Users.fetchAll().then(function (res) {
             resp.status(200).json(res);
         });
     }
 
-    @GET({path:"/sayHi",version:[1,2]})
-    public realizarReclamacion(req,resp):void{
+    @GET({ path: "/sayHi", version: [ApiVersion.V1, ApiVersion.V2] })
+    public realizarReclamacion(req, resp): void {
         resp.status(200).json('{greetings:"Hello world"}');
     }
 

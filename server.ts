@@ -1,31 +1,26 @@
-import * as express from 'express';
 import * as bodyParser from 'body-parser';
 import * as cookieParser from 'cookie-parser';
-import {Version1} from './router/v1';
+import * as express from 'express';
+import * as morgan from 'morgan';
 import config from './config/main';
-import { DBController } from './controllers/DBController';
-import {UserController} from './controllers/UserController';
+import { Router } from './router/route.routes';
 
-export class server{
-    //init express
-    app = express();
-    
-    constructor(){    
+
+export class server {
+    constructor() {
+        const app = express();
+        const routes = new Router().getRoutes();
+
         //express middleware
-        this.app.use(bodyParser.urlencoded({extended : false}));
-        this.app.use(bodyParser.json());
-        this.app.use(new cookieParser());
+        app.use(bodyParser.urlencoded({ extended: false }));
+        app.use(bodyParser.json());
+        app.use(new cookieParser());
+        app.use(morgan('dev'));
+        app.use('/api', routes);
 
-        //init Controllers
-        var controllers = {
-            'UserController': new UserController()
-        }
-        //init routes
-        var v1 = new Version1(this.app,controllers);
-            v1.lookUpServices();
-        
-        this.app.listen(config.port,()=>{
-            console.log('server listening on port ${config.port}');
+        app.listen(config.port, () => {
+            console.log(`server running at http://${config.database.host}:${config.port}`);
+            console.log(`api running at http://${config.database.host}:${config.port}/api`);
         });
     }
 };
